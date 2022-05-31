@@ -1,12 +1,10 @@
 package com.mpbank.mpbank.dto.accounts;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Getter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class DeleteAccountDTO {
   private String document;
   private String contactEmail;

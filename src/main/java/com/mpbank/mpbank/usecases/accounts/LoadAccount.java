@@ -1,20 +1,19 @@
 package com.mpbank.mpbank.usecases.accounts;
 
-import com.mpbank.mpbank.domain.interfaces.AddAccountInterface;
+import com.mpbank.mpbank.domain.interfaces.LoadAccountsInterface;
 import com.mpbank.mpbank.domain.models.Account;
-import com.mpbank.mpbank.dto.accounts.CreateAccountDto;
 import com.mpbank.mpbank.repository.AccountRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddAccount implements AddAccountInterface {
-
+public class LoadAccount implements LoadAccountsInterface {
   @Autowired
   AccountRepository repository;
 
-  @Override
-  public void add(Account accountData) {
-    repository.save(accountData);
+  public Account loadAccountByDocument(String document) {
+    Account acc = repository.findByDocument(document);
+    return acc;
   }
 }

@@ -1,6 +1,5 @@
 package com.mpbank.mpbank.domain.models;
 
-import com.mpbank.mpbank.domain.models.*;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -11,7 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-
 public class Account {
   @Id
   public String id;
