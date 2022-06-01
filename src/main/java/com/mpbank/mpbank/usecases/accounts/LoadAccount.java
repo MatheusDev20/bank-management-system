@@ -14,6 +14,12 @@ public class LoadAccount implements LoadAccountsInterface {
   @Autowired
   AccountRepository repository;
 
+  public List<Account> loadAllAccounts() {
+    List<Account> accounts = repository.findAll();
+
+    return accounts;
+  }
+
   public List<Account> loadAccountByDocument(String document) {
     List<Account> acc = repository.findByDocument(document);
     return acc;
