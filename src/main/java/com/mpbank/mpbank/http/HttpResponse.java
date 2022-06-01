@@ -1,6 +1,5 @@
 package com.mpbank.mpbank.http;
 
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;

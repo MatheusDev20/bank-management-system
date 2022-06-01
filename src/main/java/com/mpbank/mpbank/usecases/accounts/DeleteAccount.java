@@ -1,6 +1,5 @@
 package com.mpbank.mpbank.usecases.accounts;
 
-import java.util.List;
 
 import com.mpbank.mpbank.domain.interfaces.DeleteAccountInterface;
 import com.mpbank.mpbank.domain.models.Account;
@@ -15,6 +14,7 @@ public class DeleteAccount implements DeleteAccountInterface {
   @Autowired
   AccountRepository repository;
 
+  @Override
   public void delete(DeleteAccountDTO deleteInformation) {
 
     Account acc = repository.findByid(deleteInformation.getId());

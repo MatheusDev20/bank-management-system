@@ -2,7 +2,6 @@ package com.mpbank.mpbank.dto.accounts;
 
 import java.util.Date;
 
-import com.mpbank.mpbank.domain.models.Address;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

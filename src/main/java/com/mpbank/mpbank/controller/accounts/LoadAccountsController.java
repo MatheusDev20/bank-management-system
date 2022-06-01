@@ -7,8 +7,9 @@ import com.mpbank.mpbank.domain.models.Account;
 import com.mpbank.mpbank.dto.accounts.AccountDTO;
 import com.mpbank.mpbank.http.HttpResponse;
 import com.mpbank.mpbank.utils.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,11 +28,10 @@ public class LoadAccountsController {
   @Autowired
   Mapper modelMapper;
 
-
   @GetMapping
   public ResponseEntity<HttpResponse> loadAllAccounts() {
     List<Account> allAccounts = useCase.loadAllAccounts();
-    List<AccountDTO> returnedAccounts = modelMapper.mapperAccount(allAccounts);
+    List<AccountDTO> returnedAccounts = modelMapper.mapperAccountEntityToDto(allAccounts);
 
     HttpResponse response = new HttpResponse(200, "Success!", returnedAccounts, returnedAccounts.size());
     return ResponseEntity.ok(response);
@@ -40,10 +40,10 @@ public class LoadAccountsController {
 
   @GetMapping("/document")
   public ResponseEntity<HttpResponse> loadAccountByDocument(@RequestParam String doc) {
-    
+
     List<Account> accounts = useCase.loadAccountByDocument(doc);
     // Mapeando a Entidade Account para o DTO usado na reposta.
-    List<AccountDTO> returnedAccounts = modelMapper.mapperAccount(accounts);
+    List<AccountDTO> returnedAccounts = modelMapper.mapperAccountEntityToDto(accounts);
 
     HttpResponse response = new HttpResponse(200, "Success!", returnedAccounts, returnedAccounts.size());
     return ResponseEntity.ok(response);

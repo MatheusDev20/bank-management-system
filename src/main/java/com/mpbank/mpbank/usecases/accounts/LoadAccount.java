@@ -14,17 +14,20 @@ public class LoadAccount implements LoadAccountsInterface {
   @Autowired
   AccountRepository repository;
 
+  @Override
   public List<Account> loadAllAccounts() {
     List<Account> accounts = repository.findAll();
 
     return accounts;
   }
 
+  @Override
   public List<Account> loadAccountByDocument(String document) {
     List<Account> acc = repository.findByDocument(document);
     return acc;
   }
 
+  @Override
   public Account loadAccountByPhone(String phone) {
     Account acc = repository.findByPhone(phone);
     return acc;

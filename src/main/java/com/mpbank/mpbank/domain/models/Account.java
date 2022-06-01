@@ -25,8 +25,10 @@ public class Account {
   public String parentName;
 
   public String phone;
-  
+
   public Address address;
+
+  public Double balance;
 
   public String detailedAccount() {
     return String.format("Account Belongs to - fullName='%s'", fullName);
