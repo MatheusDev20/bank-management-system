@@ -1,5 +1,7 @@
 package com.mpbank.mpbank.usecases.accounts;
 
+import java.util.List;
+
 import com.mpbank.mpbank.domain.interfaces.LoadAccountsInterface;
 import com.mpbank.mpbank.domain.models.Account;
 import com.mpbank.mpbank.repository.AccountRepository;
@@ -12,8 +14,13 @@ public class LoadAccount implements LoadAccountsInterface {
   @Autowired
   AccountRepository repository;
 
-  public Account loadAccountByDocument(String document) {
-    Account acc = repository.findByDocument(document);
+  public List<Account> loadAccountByDocument(String document) {
+    List<Account> acc = repository.findByDocument(document);
+    return acc;
+  }
+
+  public Account loadAccountByPhone(String phone) {
+    Account acc = repository.findByPhone(phone);
     return acc;
   }
 }

@@ -8,6 +8,15 @@ import lombok.Getter;
 public class DeleteAccountDTO {
   private String document;
   private String contactEmail;
+  private String id;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public String getDocument() {
     return document;

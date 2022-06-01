@@ -24,6 +24,8 @@ public class Account {
 
   public String parentName;
 
+  public String phone;
+  
   public Address address;
 
   public String detailedAccount() {

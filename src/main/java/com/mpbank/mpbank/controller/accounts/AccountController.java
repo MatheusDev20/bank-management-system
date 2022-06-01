@@ -3,7 +3,6 @@ package com.mpbank.mpbank.controller.accounts;
 import com.mpbank.mpbank.domain.interfaces.AddAccountInterface;
 import com.mpbank.mpbank.domain.models.Account;
 import com.mpbank.mpbank.dto.accounts.CreateAccountDto;
-import com.mpbank.mpbank.repository.AccountRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

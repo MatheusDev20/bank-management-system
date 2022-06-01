@@ -14,6 +14,7 @@ public class CreateAccountDto {
   private String document;
   private String contactEmail;
   private String parentName;
+  private String phone;
   private Address address;
 
 }
