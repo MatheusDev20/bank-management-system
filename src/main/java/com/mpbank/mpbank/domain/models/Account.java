@@ -30,8 +30,8 @@ public class Account {
 
   public Double balance;
 
-  public String detailedAccount() {
-    return String.format("Account Belongs to - fullName='%s'", fullName);
-  }
+  public Date createdDate;
+
+  public Date updatedDate;
 
 }

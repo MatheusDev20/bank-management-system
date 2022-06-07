@@ -16,9 +16,8 @@ public class Mapper {
   @Autowired
   ModelMapper modelMapper;
 
-  List<AccountDTO> returnedAccounts = new ArrayList<AccountDTO>();
-
   public List<AccountDTO> mapperAccountEntityToDto(List<Account> entityList) {
+    List<AccountDTO> returnedAccounts = new ArrayList<AccountDTO>();
     for (int i = 0; i < entityList.size(); i++) {
       returnedAccounts.add(modelMapper.map(entityList.get(i), AccountDTO.class));
     }

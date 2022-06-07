@@ -2,6 +2,8 @@ package com.mpbank.mpbank.controller.accounts;
 
 import com.mpbank.mpbank.domain.interfaces.DeleteAccountInterface;
 import com.mpbank.mpbank.dto.accounts.DeleteAccountDTO;
+import com.mpbank.mpbank.dto.http.GenericResponseDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +22,8 @@ public class DeleteAccountController {
   DeleteAccountInterface useCase;
 
   @DeleteMapping
-  public String deleteAccount(@RequestBody DeleteAccountDTO deleteInformation) {
+  public GenericResponseDTO<DeleteAccountDTO> deleteAccount(@RequestBody DeleteAccountDTO deleteInformation) {
     useCase.delete(deleteInformation);
-    return "Conta Deletada";
+    return new GenericResponseDTO<DeleteAccountDTO>(201, "Succesfully Deleted", deleteInformation);
   }
 };

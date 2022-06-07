@@ -5,7 +5,7 @@ import java.util.List;
 import com.mpbank.mpbank.domain.interfaces.LoadAccountsInterface;
 import com.mpbank.mpbank.domain.models.Account;
 import com.mpbank.mpbank.dto.accounts.AccountDTO;
-import com.mpbank.mpbank.http.HttpResponse;
+import com.mpbank.mpbank.dto.http.GenericResponseDTO;
 import com.mpbank.mpbank.utils.Mapper;
 import org.springframework.http.ResponseEntity;
 
@@ -29,23 +29,22 @@ public class LoadAccountsController {
   Mapper modelMapper;
 
   @GetMapping
-  public ResponseEntity<HttpResponse> loadAllAccounts() {
+  public ResponseEntity<GenericResponseDTO<List<AccountDTO>>> loadAllAccounts() {
     List<Account> allAccounts = useCase.loadAllAccounts();
     List<AccountDTO> returnedAccounts = modelMapper.mapperAccountEntityToDto(allAccounts);
 
-    HttpResponse response = new HttpResponse(200, "Success!", returnedAccounts, returnedAccounts.size());
+    GenericResponseDTO<List<AccountDTO>> response = new GenericResponseDTO<List<AccountDTO>>(200, "Success Fetched", returnedAccounts);
     return ResponseEntity.ok(response);
 
   }
 
   @GetMapping("/document")
-  public ResponseEntity<HttpResponse> loadAccountByDocument(@RequestParam String doc) {
+  public ResponseEntity<GenericResponseDTO<List<AccountDTO>>> loadAccountByDocument(@RequestParam String doc) {
 
     List<Account> accounts = useCase.loadAccountByDocument(doc);
     // Mapeando a Entidade Account para o DTO usado na reposta.
     List<AccountDTO> returnedAccounts = modelMapper.mapperAccountEntityToDto(accounts);
-
-    HttpResponse response = new HttpResponse(200, "Success!", returnedAccounts, returnedAccounts.size());
+    GenericResponseDTO<List<AccountDTO>> response = new GenericResponseDTO<List<AccountDTO>>(200, "Success Fetched", returnedAccounts);
     return ResponseEntity.ok(response);
   }
 

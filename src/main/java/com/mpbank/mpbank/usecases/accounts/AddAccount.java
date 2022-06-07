@@ -1,5 +1,7 @@
 package com.mpbank.mpbank.usecases.accounts;
 
+import java.util.Date;
+
 import com.mpbank.mpbank.domain.interfaces.AddAccountInterface;
 import com.mpbank.mpbank.domain.models.Account;
 import com.mpbank.mpbank.dto.accounts.CreateAccountDto;
@@ -22,6 +24,9 @@ public class AddAccount implements AddAccountInterface {
   public void add(CreateAccountDto accountData) {
     Account acc = modelMapper.map(accountData, Account.class);
     acc.setBalance(0.00);
+    Date created_date = new Date();
+
+    acc.setCreatedDate(created_date);
     repository.save(acc);
   }
 }
