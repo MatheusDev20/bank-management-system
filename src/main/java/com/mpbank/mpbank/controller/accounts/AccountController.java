@@ -1,8 +1,10 @@
 package com.mpbank.mpbank.controller.accounts;
 
+import java.util.Date;
 
 import com.mpbank.mpbank.domain.interfaces.AddAccountInterface;
 import com.mpbank.mpbank.dto.accounts.CreateAccountDto;
+import com.mpbank.mpbank.dto.accounts.ResponseAccountDTO;
 import com.mpbank.mpbank.dto.http.GenericResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +24,16 @@ public class AccountController {
   private AddAccountInterface addAcount;
 
   @PostMapping
-  public ResponseEntity<GenericResponseDTO<CreateAccountDto>> insert(@RequestBody CreateAccountDto accountData) {
-    addAcount.add(accountData);
-    GenericResponseDTO<CreateAccountDto> response = new GenericResponseDTO<CreateAccountDto>(201, "Created!",
-      accountData);
+  public ResponseEntity<GenericResponseDTO<ResponseAccountDTO>> insert(@RequestBody CreateAccountDto accountData) {
+    String acc_id = addAcount.add(accountData);
+    ResponseAccountDTO responseAccount = new ResponseAccountDTO(acc_id, accountData.getFullName());
+
+    GenericResponseDTO<ResponseAccountDTO> response = new GenericResponseDTO<ResponseAccountDTO>(
+        201,
+        "Created!",
+        new Date(),
+        responseAccount);
+         
     return ResponseEntity.ok(response);
   }
 }

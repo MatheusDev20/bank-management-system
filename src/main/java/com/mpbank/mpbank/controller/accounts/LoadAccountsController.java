@@ -1,5 +1,6 @@
 package com.mpbank.mpbank.controller.accounts;
 
+import java.util.Date;
 import java.util.List;
 
 import com.mpbank.mpbank.domain.interfaces.LoadAccountsInterface;
@@ -33,7 +34,11 @@ public class LoadAccountsController {
     List<Account> allAccounts = useCase.loadAllAccounts();
     List<AccountDTO> returnedAccounts = modelMapper.mapperAccountEntityToDto(allAccounts);
 
-    GenericResponseDTO<List<AccountDTO>> response = new GenericResponseDTO<List<AccountDTO>>(200, "Success Fetched", returnedAccounts);
+    GenericResponseDTO<List<AccountDTO>> response = new GenericResponseDTO<List<AccountDTO>>(
+        200,
+        "Success Fetched",
+        new Date(),
+        returnedAccounts);
     return ResponseEntity.ok(response);
 
   }
@@ -44,7 +49,12 @@ public class LoadAccountsController {
     List<Account> accounts = useCase.loadAccountByDocument(doc);
     // Mapeando a Entidade Account para o DTO usado na reposta.
     List<AccountDTO> returnedAccounts = modelMapper.mapperAccountEntityToDto(accounts);
-    GenericResponseDTO<List<AccountDTO>> response = new GenericResponseDTO<List<AccountDTO>>(200, "Success Fetched", returnedAccounts);
+    GenericResponseDTO<List<AccountDTO>> response = new GenericResponseDTO<List<AccountDTO>>(
+        200,
+        "Success Fetched",
+        new Date(),
+        returnedAccounts);
+
     return ResponseEntity.ok(response);
   }
 

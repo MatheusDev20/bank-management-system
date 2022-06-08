@@ -3,5 +3,6 @@ package com.mpbank.mpbank.domain.interfaces;
 import com.mpbank.mpbank.dto.accounts.CreateAccountDto;
 
 public interface AddAccountInterface {
-  public void add(CreateAccountDto accountData);
+  // Returns the _id of the current mongo document created;
+  public String add(CreateAccountDto accountData);
 }

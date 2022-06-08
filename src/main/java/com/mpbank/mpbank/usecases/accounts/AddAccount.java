@@ -21,12 +21,16 @@ public class AddAccount implements AddAccountInterface {
   private ModelMapper modelMapper;
 
   @Override
-  public void add(CreateAccountDto accountData) {
+  public String add(CreateAccountDto accountData) {
     Account acc = modelMapper.map(accountData, Account.class);
+
     acc.setBalance(0.00);
     Date created_date = new Date();
 
     acc.setCreatedDate(created_date);
-    repository.save(acc);
+
+    Account savedAcc = repository.save(acc);
+  
+    return savedAcc.getId();
   }
 }

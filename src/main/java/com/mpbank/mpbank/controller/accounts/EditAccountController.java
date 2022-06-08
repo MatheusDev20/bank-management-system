@@ -1,5 +1,6 @@
 package com.mpbank.mpbank.controller.accounts;
 
+import java.util.Date;
 
 import com.mpbank.mpbank.dto.accounts.EditAccountDTO;
 import com.mpbank.mpbank.dto.http.GenericResponseDTO;
@@ -26,7 +27,11 @@ public class EditAccountController {
   public ResponseEntity<GenericResponseDTO<Object>> editAccount(@RequestBody EditAccountDTO<Object> editInfo) {
     useCase.editBasicAccountInfo(editInfo);
 
-    GenericResponseDTO<Object> response = new GenericResponseDTO<Object>(200, "Edited", null);
+    GenericResponseDTO<Object> response = new GenericResponseDTO<Object>(
+        200,
+        "Edited",
+        new Date(),
+        null);
 
     return ResponseEntity.ok(response);
   }
