@@ -8,10 +8,12 @@ import com.mpbank.mpbank.dto.accounts.ResponseAccountDTO;
 import com.mpbank.mpbank.dto.http.GenericResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +29,6 @@ public class AccountController {
   public ResponseEntity<GenericResponseDTO<ResponseAccountDTO>> insert(@RequestBody CreateAccountDto accountData) {
     String acc_id = addAcount.add(accountData);
     ResponseAccountDTO responseAccount = new ResponseAccountDTO(acc_id, accountData.getFullName());
-
     GenericResponseDTO<ResponseAccountDTO> response = new GenericResponseDTO<ResponseAccountDTO>(
         201,
         "Created!",
