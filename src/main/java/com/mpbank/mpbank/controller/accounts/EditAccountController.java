@@ -2,6 +2,8 @@ package com.mpbank.mpbank.controller.accounts;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import com.mpbank.mpbank.dto.accounts.EditAccountDTO;
 import com.mpbank.mpbank.dto.http.GenericResponseDTO;
 import com.mpbank.mpbank.usecases.accounts.EditAccountUseCase;
@@ -24,7 +26,7 @@ public class EditAccountController {
   EditAccountUseCase useCase;
 
   @PutMapping
-  public ResponseEntity<GenericResponseDTO<Object>> editAccount(@RequestBody EditAccountDTO<Object> editInfo) {
+  public ResponseEntity<GenericResponseDTO<Object>> editAccount(@RequestBody @Valid EditAccountDTO<Object> editInfo) {
     useCase.editBasicAccountInfo(editInfo);
 
     GenericResponseDTO<Object> response = new GenericResponseDTO<Object>(

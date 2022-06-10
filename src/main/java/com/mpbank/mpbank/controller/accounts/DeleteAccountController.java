@@ -2,6 +2,8 @@ package com.mpbank.mpbank.controller.accounts;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import com.mpbank.mpbank.domain.interfaces.DeleteAccountInterface;
 import com.mpbank.mpbank.dto.accounts.DeleteAccountDTO;
 import com.mpbank.mpbank.dto.http.GenericResponseDTO;
@@ -24,7 +26,7 @@ public class DeleteAccountController {
   DeleteAccountInterface useCase;
 
   @DeleteMapping
-  public GenericResponseDTO<String> deleteAccount(@RequestBody DeleteAccountDTO deleteInformation) {
+  public GenericResponseDTO<String> deleteAccount( @Valid @RequestBody DeleteAccountDTO deleteInformation) {
     useCase.delete(deleteInformation);
 
     return new GenericResponseDTO<String>(201,

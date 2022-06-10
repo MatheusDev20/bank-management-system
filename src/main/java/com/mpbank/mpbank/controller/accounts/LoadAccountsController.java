@@ -3,13 +3,16 @@ package com.mpbank.mpbank.controller.accounts;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.mpbank.mpbank.domain.interfaces.LoadAccountsInterface;
 import com.mpbank.mpbank.domain.models.Account;
 import com.mpbank.mpbank.dto.accounts.AccountDTO;
 import com.mpbank.mpbank.dto.http.GenericResponseDTO;
 import com.mpbank.mpbank.utils.Mapper;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.validation.annotation.Validated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/accounts")
 @RequiredArgsConstructor
+@Validated
 public class LoadAccountsController {
 
   @Autowired
@@ -44,7 +48,8 @@ public class LoadAccountsController {
   }
 
   @GetMapping("/document")
-  public ResponseEntity<GenericResponseDTO<List<AccountDTO>>> loadAccountByDocument(@RequestParam String doc) {
+  public ResponseEntity<GenericResponseDTO<List<AccountDTO>>> loadAccountByDocument(
+      @RequestParam("doc") @Min(11) String doc) {
 
     List<Account> accounts = useCase.loadAccountByDocument(doc);
     // Mapeando a Entidade Account para o DTO usado na reposta.
