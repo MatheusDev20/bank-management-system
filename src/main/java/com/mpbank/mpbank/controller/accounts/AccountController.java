@@ -2,6 +2,8 @@ package com.mpbank.mpbank.controller.accounts;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import com.mpbank.mpbank.domain.interfaces.AddAccountInterface;
 import com.mpbank.mpbank.dto.accounts.CreateAccountDto;
 import com.mpbank.mpbank.dto.accounts.ResponseAccountDTO;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -26,7 +27,8 @@ public class AccountController {
   private AddAccountInterface addAcount;
 
   @PostMapping
-  public ResponseEntity<GenericResponseDTO<ResponseAccountDTO>> insert(@RequestBody CreateAccountDto accountData) {
+  public ResponseEntity<GenericResponseDTO<ResponseAccountDTO>> insert(
+      @RequestBody @Valid CreateAccountDto accountData) {
     String acc_id = addAcount.add(accountData);
     ResponseAccountDTO responseAccount = new ResponseAccountDTO(acc_id, accountData.getFullName());
     GenericResponseDTO<ResponseAccountDTO> response = new GenericResponseDTO<ResponseAccountDTO>(
@@ -34,7 +36,7 @@ public class AccountController {
         "Created!",
         new Date(),
         responseAccount);
-         
+
     return ResponseEntity.ok(response);
   }
 }
